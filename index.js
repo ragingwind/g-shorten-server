@@ -16,12 +16,16 @@ app.get('/shorten/', function (req, res) {
     json: true
   };
 
+  console.log('Request shorten job with longurl', opts.body);
+
   got.post(url, opts, function(err, data) {
     if (err) {
-      res.status(400).end(data);
-    } else {
-      res.json(data);
+      console.log('Got an error', err);
+      res.status(400);
     }
+
+    console.log('Got a response', JSON.stringify(data));
+    res.json(data);
   });
 });
 
