@@ -11,6 +11,7 @@
   "author": "ragingwind",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.12.4"
+    "express": "^4.12.4",
+    "got": "^3.2.0"
   }
 }
