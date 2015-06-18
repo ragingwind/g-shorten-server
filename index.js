@@ -1,24 +1,17 @@
+ /*global describe, it */
+
 'use strict';
 
 var express = require('express');
-var got = require('got');
+var shorten = require('./shorten');
 var app = express();
 var port = process.env.PORT;
-var url = 'https://www.googleapis.com/urlshortener/v1/url?key=' + process.env.APIKEY
 
 app.get('/shorten/', function (req, res) {
-  var opts = {
-    body: JSON.stringify({longUrl: req.query.longurl}),
-    headers: {
-      'content-type': 'application/json'
-    },
-    strictSSL: true,
-    json: true
-  };
+  var longurl = req.query.longurl;
 
-  console.log('Request shorten job with longurl', opts.body);
-
-  got.post(url, opts, function(err, data) {
+  console.log('Request shorten job with longurl', longurl);
+  shorten(longurl, process.env.APIKEY, function(err, data) {
     if (err) {
       console.log('Got an error', err);
       res.status(400);

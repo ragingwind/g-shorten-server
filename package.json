@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "export $(cat .env) && mocha -t 9000",
     "setup": "echo \"Please input your app-key for Google shorten:\" && read apikey && echo APIKEY=$apikey > test",
     "serve": "foreman start web",
     "deploy": "git push heroku master"
